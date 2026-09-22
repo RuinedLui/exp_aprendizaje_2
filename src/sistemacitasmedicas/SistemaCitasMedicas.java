@@ -4,8 +4,18 @@
  */
 package sistemacitasmedicas;
 
-
 import Conexion.ConexionDB;
+
+//import Modelo.CitaMedica;
+//import Modelo.Doctor;
+//import Modelo.Paciente;
+//import Modelo.Persona;
+
+//import Vista.FrmCitas;
+//import Vista.FrmDoctores;
+//import Vista.FrmPacientes;
+//import Vista.FrmPrincipal;
+
 import java.sql.Connection;
 
 /**
