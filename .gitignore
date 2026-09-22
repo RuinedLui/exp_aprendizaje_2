@@ -1,0 +1,29 @@
+# NetBeans
+/nbproject/private/
+/build/
+/dist/
+/nbbuild/
+/nbdist/
+/.nb-gradle/
+
+# Java
+*.class
+*.log
+*.jar
+*.war
+*.ear
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDEs adicionales
+.idea/
+.vscode/
+
+# Archivos temporales
+*.tmp
+*.bak
+*.swp
+*~
