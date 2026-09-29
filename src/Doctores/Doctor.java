@@ -1,13 +1,17 @@
-package clinica;
+package Doctores;
+
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Doctor {
     // Atributos
     private String codigoDoctor;
     private String nombreCompleto;
-    private String especialidad;   // Medicina General, Psicología, Nutrición, Fisioterapia
+    private String especialidad;
     private String telefono;
     private String correo;
-    private String estado;         // Disponible o No disponible
+    private String estado;
 
     // Constructor
     public Doctor(String codigoDoctor, String nombreCompleto, String especialidad,
@@ -21,7 +25,7 @@ public class Doctor {
     }
 
     // Getters y Setters
-    public String getCodigoDoctor() { return codigoDoctor; }
+	public String getCodigoDoctor() { return codigoDoctor; }
     public void setCodigoDoctor(String codigoDoctor) { this.codigoDoctor = codigoDoctor; }
 
     public String getNombreCompleto() { return nombreCompleto; }
@@ -38,8 +42,8 @@ public class Doctor {
 
     public String getEstado() { return estado; }
     public void setEstado(String estado) { this.estado = estado; }
-
-    // Método para mostrar información
+    
+	//Muestra información
     @Override
     public String toString() {
         return "Código Doctor: " + codigoDoctor +
@@ -48,5 +52,61 @@ public class Doctor {
                "\nTeléfono: " + telefono +
                "\nCorreo: " + correo +
                "\nEstado: " + estado;
+    }
+}
+
+// Clase DoctorJDBC (no publica)
+class DoctorJDBC {
+    private Connection conn;
+
+    public DoctorJDBC(Connection conn) {
+        this.conn = conn;
+    }
+// Insertar nuevo doctor
+    public void insertarDoctor(Doctor doctor) throws SQLException {
+        String sql = "INSERT INTO doctores (codigoDoctor, nombreCompleto, especialidad, telefono, correo, estado) VALUES (?, ?, ?, ?, ?, ?)";
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ps.setString(1, doctor.getCodigoDoctor());
+        ps.setString(2, doctor.getNombreCompleto());
+        ps.setString(3, doctor.getEspecialidad());
+        ps.setString(4, doctor.getTelefono());
+        ps.setString(5, doctor.getCorreo());
+        ps.setString(6, doctor.getEstado());
+        ps.executeUpdate();
+    }
+// Consultar todos los doctores
+    public List<Doctor> listarDoctores() throws SQLException {
+        List<Doctor> lista = new ArrayList<>();
+        String sql = "SELECT * FROM doctores";
+        Statement st = conn.createStatement();
+        ResultSet rs = st.executeQuery(sql);
+
+        while (rs.next()) {
+            Doctor d = new Doctor(
+                rs.getString("codigoDoctor"),
+                rs.getString("nombreCompleto"),
+                rs.getString("especialidad"),
+                rs.getString("telefono"),
+                rs.getString("correo"),
+                rs.getString("estado")
+            );
+            lista.add(d);
+        }
+        return lista;
+    }
+// Actualizar estado del doctor
+    public void actualizarEstado(String codigoDoctor, String nuevoEstado) throws SQLException {
+        String sql = "UPDATE doctores SET estado = ? WHERE codigoDoctor = ?";
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ps.setString(1, nuevoEstado);
+        ps.setString(2, codigoDoctor);
+        ps.executeUpdate();
+    }
+// Eliminar doctor
+    public void eliminarDoctor(String codigoDoctor) throws SQLException {
+        String sql = "DELETE FROM doctores WHERE codigoDoctor = ?";
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ps.setString(1, codigoDoctor);
+        ps.executeUpdate();
     }
 }
