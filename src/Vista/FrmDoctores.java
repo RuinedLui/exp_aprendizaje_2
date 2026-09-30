@@ -8,6 +8,7 @@ import Modelo.Doctor;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author luise
@@ -400,17 +401,20 @@ public class FrmDoctores extends javax.swing.JFrame {
     
     private void limpiarCampos() {
 
-    codigoDoctorSeleccionado = 0;
+        codigoDoctorSeleccionado = 0;
 
-    txtNombreDoctor.setText("");
-    txtTelefonoDoctor.setValue(null);
-    txtCorreoDoctor.setText("");
+        txtNombreDoctor.setText("");
 
-    cmbEspecialidad.setSelectedIndex(0);
-    cmbEstado.setSelectedIndex(0);
+        txtTelefonoDoctor.setValue(null);
+        txtTelefonoDoctor.setText("");
 
-    tblDoctores.clearSelection();
-}
+        txtCorreoDoctor.setText("");
+
+        cmbEspecialidad.setSelectedIndex(0);
+        cmbEstado.setSelectedIndex(0);
+
+        tblDoctores.clearSelection();
+    }
     /**
      * @param args the command line arguments
      */
