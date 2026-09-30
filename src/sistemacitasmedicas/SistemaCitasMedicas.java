@@ -18,6 +18,8 @@ import Conexion.ConexionDB;
 
 import java.sql.Connection;
 
+import Vista.FrmPrincipal;
+
 /**
  *
  * @author luise
@@ -32,6 +34,9 @@ public class SistemaCitasMedicas {
 
         if (conexion != null) {
             System.out.println("La aplicacion esta conectada a la base de datos");
+            
+            FrmPrincipal principal = new FrmPrincipal();
+            principal.setVisible(true);
         } else {
             System.out.println("No se pudo realizar la conexion");
         }

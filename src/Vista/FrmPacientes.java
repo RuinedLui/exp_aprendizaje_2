@@ -15,6 +15,7 @@ public class FrmPacientes extends javax.swing.JFrame {
      */
     public FrmPacientes() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
