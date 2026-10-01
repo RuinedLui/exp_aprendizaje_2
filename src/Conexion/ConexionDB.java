@@ -22,7 +22,7 @@ public class ConexionDB {
 
     private static final String USUARIO = "root";
 
-    private static final String CONTRASENA = "Luis2108";
+    private static final String CONTRASENA = "Lisi22";
 
     public static Connection conectar() {
 
