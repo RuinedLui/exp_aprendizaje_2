@@ -14,11 +14,11 @@ import Conexion.ConexionDB;
 //import Vista.FrmCitas;
 //import Vista.FrmDoctores;
 //import Vista.FrmPacientes;
-import Vista.FrmPrincipal;
+import Vista.FrmPrincipal1;
 
 import java.sql.Connection;
 
-import Vista.FrmPrincipal;
+import Vista.FrmPrincipal1;
 
 /**
  *
@@ -35,13 +35,13 @@ public class SistemaCitasMedicas {
         if (conexion != null) {
             System.out.println("La aplicacion esta conectada a la base de datos");
             
-            FrmPrincipal principal = new FrmPrincipal();
+            FrmPrincipal1 principal = new FrmPrincipal1();
             principal.setVisible(true);
         } else {
             System.out.println("No se pudo realizar la conexion");
         }
         
-        FrmPrincipal Principal = new FrmPrincipal();
+        FrmPrincipal1 Principal = new FrmPrincipal1();
         Principal.setVisible(true);
     }
     
