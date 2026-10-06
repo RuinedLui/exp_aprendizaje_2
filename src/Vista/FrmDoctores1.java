@@ -13,15 +13,15 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author luise
  */
-public class FrmDoctores extends javax.swing.JFrame {
+public class FrmDoctores1 extends javax.swing.JFrame {
     
     private Doctor.DoctorJDBC doctorJDBC;
     private int codigoDoctorSeleccionado = 0;
-
+    
     /**
-     * Creates new form FrmDoctores
+     * Creates new form FrmDoctores1
      */
-    public FrmDoctores() {
+    public FrmDoctores1() {
         initComponents();
         setLocationRelativeTo(null);
 
@@ -76,6 +76,7 @@ public class FrmDoctores extends javax.swing.JFrame {
             );
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -103,7 +104,6 @@ public class FrmDoctores extends javax.swing.JFrame {
         tblDoctores = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setSize(new java.awt.Dimension(450, 360));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel1.setText("Nombre:");
@@ -211,7 +211,7 @@ public class FrmDoctores extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -244,7 +244,7 @@ public class FrmDoctores extends javax.swing.JFrame {
                     .addComponent(btnLimpiar))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -294,75 +294,6 @@ public class FrmDoctores extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
-    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
-        // TODO add your handling code here:
-        limpiarCampos();
-    }//GEN-LAST:event_btnLimpiarActionPerformed
-
-    private void tblDoctoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDoctoresMouseClicked
-        int fila = tblDoctores.getSelectedRow();
-
-            if (fila != -1) {
-
-                codigoDoctorSeleccionado = Integer.parseInt(
-                    tblDoctores.getValueAt(fila, 0).toString()
-            );
-
-            txtNombreDoctor.setText(
-                    tblDoctores.getValueAt(fila, 1).toString()
-            );
-
-            cmbEspecialidad.setSelectedItem(
-                    tblDoctores.getValueAt(fila, 2).toString()
-            );
-
-            txtTelefonoDoctor.setText(
-                    tblDoctores.getValueAt(fila, 3).toString()
-            );
-
-            txtCorreoDoctor.setText(
-                    tblDoctores.getValueAt(fila, 4).toString()
-            );
-
-            cmbEstado.setSelectedItem(
-                    tblDoctores.getValueAt(fila, 5).toString()
-            );
-        }        
-    }//GEN-LAST:event_tblDoctoresMouseClicked
-
-    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        // TODO add your handling code here:
-        if (codigoDoctorSeleccionado == 0) {
-
-            JOptionPane.showMessageDialog(
-                    this,
-                    "Seleccione un doctor de la tabla"
-            );
-
-            return;
-        }
-
-        try {
-
-            doctorJDBC.eliminarDoctor(codigoDoctorSeleccionado);
-
-            JOptionPane.showMessageDialog(
-                    this,
-                    "Doctor eliminado correctamente"
-            );
-
-            limpiarCampos();
-            cargarDoctores();
-
-        } catch (SQLException e) {
-
-            JOptionPane.showMessageDialog(
-                    this,
-                    "Error al eliminar doctor: " + e.getMessage()
-            );
-        }
-    }//GEN-LAST:event_btnEliminarActionPerformed
-
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
         // TODO add your handling code here:
         if (codigoDoctorSeleccionado == 0) {
@@ -398,6 +329,76 @@ public class FrmDoctores extends javax.swing.JFrame {
             );
         }
     }//GEN-LAST:event_btnActualizarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        // TODO add your handling code here:
+        if (codigoDoctorSeleccionado == 0) {
+
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Seleccione un doctor de la tabla"
+            );
+
+            return;
+        }
+
+        try {
+
+            doctorJDBC.eliminarDoctor(codigoDoctorSeleccionado);
+
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Doctor eliminado correctamente"
+            );
+
+            limpiarCampos();
+            cargarDoctores();
+
+        } catch (SQLException e) {
+
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Error al eliminar doctor: " + e.getMessage()
+            );
+        }
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        // TODO add your handling code here:
+        limpiarCampos();
+    }//GEN-LAST:event_btnLimpiarActionPerformed
+
+    private void tblDoctoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDoctoresMouseClicked
+        // TODO add your handling code here:
+        int fila = tblDoctores.getSelectedRow();
+
+            if (fila != -1) {
+
+                codigoDoctorSeleccionado = Integer.parseInt(
+                    tblDoctores.getValueAt(fila, 0).toString()
+            );
+
+            txtNombreDoctor.setText(
+                    tblDoctores.getValueAt(fila, 1).toString()
+            );
+
+            cmbEspecialidad.setSelectedItem(
+                    tblDoctores.getValueAt(fila, 2).toString()
+            );
+
+            txtTelefonoDoctor.setText(
+                    tblDoctores.getValueAt(fila, 3).toString()
+            );
+
+            txtCorreoDoctor.setText(
+                    tblDoctores.getValueAt(fila, 4).toString()
+            );
+
+            cmbEstado.setSelectedItem(
+                    tblDoctores.getValueAt(fila, 5).toString()
+            );
+        }
+    }//GEN-LAST:event_tblDoctoresMouseClicked
     
     private void limpiarCampos() {
 
@@ -415,6 +416,7 @@ public class FrmDoctores extends javax.swing.JFrame {
 
         tblDoctores.clearSelection();
     }
+    
     /**
      * @param args the command line arguments
      */
@@ -432,20 +434,20 @@ public class FrmDoctores extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmDoctores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmDoctores1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmDoctores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmDoctores1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmDoctores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmDoctores1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmDoctores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmDoctores1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FrmDoctores().setVisible(true);
+                new FrmDoctores1().setVisible(true);
             }
         });
     }
