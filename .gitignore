@@ -6,12 +6,6 @@
 /nbdist/
 /.nb-gradle/
 
-# Java
-*.class
-*.log
-*.jar
-*.war
-*.ear
 
 # Sistema operativo
 .DS_Store
