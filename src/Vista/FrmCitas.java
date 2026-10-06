@@ -1323,37 +1323,7 @@ public class FrmCitas extends javax.swing.JFrame {
     // Seleccionar registros para editar datos de citas
     private void tableConsultaCitasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableConsultaCitasMouseClicked
         // TODO add your handling code here:
-        /* int filaSeleccionada = tableConsultaCitas.getSelectedRow();
-
-        if (filaSeleccionada != -1) {
-            // 1. Obtener valores de la fila
-            String idCita = tableConsultaCitas.getValueAt(filaSeleccionada, 0).toString();
-            String idPaciente = tableConsultaCitas.getValueAt(filaSeleccionada, 1).toString();
-            String idDoctor = tableConsultaCitas.getValueAt(filaSeleccionada, 2).toString();
-            String fecha = tableConsultaCitas.getValueAt(filaSeleccionada, 3).toString();
-            String hora = tableConsultaCitas.getValueAt(filaSeleccionada, 4).toString();
-            String motivo = tableConsultaCitas.getValueAt(filaSeleccionada, 5).toString();
-            String estado = tableConsultaCitas.getValueAt(filaSeleccionada, 6).toString();
-
-            // 2. Asignar los campos de texto en Modificar
-            txtModCodigoCita.setText(idCita);
-            txtModCodigoPaciente.setText(idPaciente);
-            txtModCodigoDoctor.setText(idDoctor);
-            txtModFecha.setText(fecha);
-            txtModMotivo.setText(motivo);
-            cbModEstado.setSelectedItem(estado);
-            seleccionarHoraEnComboBox(cbModHora, hora);
-
-            // 3. Asignar los campos de texto en Modificar
-            txtElimCodigoCita.setText(idCita);
-            txtElimCodigoPaciente.setText(idPaciente);
-            txtElimCodigoDoctor.setText(idDoctor);
-            txtElimFecha.setText(fecha);
-            txtElimMotivo.setText(motivo);
-            cbElimEstado.setSelectedItem(estado);
-            seleccionarHoraEnComboBox(cbElimHora, hora);
-
-        }*/
+        /**/
     }//GEN-LAST:event_tableConsultaCitasMouseClicked
 
     private void txtConsultarCitasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtConsultarCitasActionPerformed
