@@ -18,11 +18,11 @@ import java.sql.SQLException;
 public class ConexionDB {
     
     private static final String URL =
-            "jdbc:mysql://localhost:3306/sistema_citas_medicas";
+            "jdbc:mysql://localhost:3306/sistema_citas_medicas_pruebas";
 
     private static final String USUARIO = "root";
 
-    private static final String CONTRASENA = "Luis2108";
+    private static final String CONTRASENA = "Toor1721";
 
     public static Connection conectar() {
 

@@ -4,6 +4,15 @@
  */
 package Vista;
 
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import Vista.FrmCitas;
+import Vista.FrmDoctores;
+import Vista.FrmPacientes;
+
 /**
  *
  * @author luise
@@ -15,6 +24,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
      */
     public FrmPrincipal() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -26,21 +36,143 @@ public class FrmPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel5 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        btnCitasMedicas = new javax.swing.JButton();
+        btnDoctores = new javax.swing.JButton();
+        btnPacientes = new javax.swing.JButton();
+        btnSalir = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+
+        jLabel5.setText("jLabel5");
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        jLabel1.setText("Sistema de Citas Médicas");
+
+        btnCitasMedicas.setText("Citas Médicas");
+        btnCitasMedicas.setMaximumSize(new java.awt.Dimension(110, 25));
+        btnCitasMedicas.setMinimumSize(new java.awt.Dimension(110, 25));
+        btnCitasMedicas.setPreferredSize(new java.awt.Dimension(110, 25));
+        btnCitasMedicas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCitasMedicasActionPerformed(evt);
+            }
+        });
+
+        btnDoctores.setText("Doctores");
+        btnDoctores.setPreferredSize(new java.awt.Dimension(110, 25));
+        btnDoctores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDoctoresActionPerformed(evt);
+            }
+        });
+
+        btnPacientes.setText("Pacientes");
+        btnPacientes.setPreferredSize(new java.awt.Dimension(110, 25));
+        btnPacientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPacientesActionPerformed(evt);
+            }
+        });
+
+        btnSalir.setText("Salir del Sistema");
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel2.setText("Selecciona una opción:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(80, 80, 80)
+                .addComponent(jLabel1)
+                .addContainerGap(85, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnCitasMedicas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnPacientes, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnDoctores, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(129, 129, 129))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(189, 189, 189))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel2)
+                .addGap(23, 23, 23)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnCitasMedicas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnDoctores, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnPacientes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(23, 23, 23))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnPacientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPacientesActionPerformed
+        // TODO add your handling code here:
+        FrmPacientes frmPacientes = new FrmPacientes();
+        frmPacientes.setLocationRelativeTo(this); // Para que abra centrado respecto a la ventana principal
+        frmPacientes.setVisible(true);
+        
+        this.dispose();
+    }//GEN-LAST:event_btnPacientesActionPerformed
+
+    private void btnCitasMedicasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCitasMedicasActionPerformed
+        // TODO add your handling code here:
+        FrmCitas frmCitas = new FrmCitas();
+        frmCitas.setLocationRelativeTo(this); // Para que abra centrado respecto a la ventana principal
+        frmCitas.setVisible(true);
+        
+        this.dispose();
+    }//GEN-LAST:event_btnCitasMedicasActionPerformed
+
+    private void btnDoctoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDoctoresActionPerformed
+        // TODO add your handling code here:
+        FrmDoctores frmDoctores = new FrmDoctores();
+        frmDoctores.setLocationRelativeTo(this); // Para que abra centrado respecto a la ventana principal
+        frmDoctores.setVisible(true);
+        
+        this.dispose();
+    }//GEN-LAST:event_btnDoctoresActionPerformed
+
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        // TODO add your handling code here:
+        int confirmacion = JOptionPane.showConfirmDialog(
+        this, 
+        "¿Está seguro de que desea salir del sistema?", 
+        "Confirmar salida", 
+        JOptionPane.YES_NO_OPTION,
+        JOptionPane.QUESTION_MESSAGE
+        );
+
+        if (confirmacion == JOptionPane.YES_OPTION) {
+            System.exit(0); // Cierra completamente la aplicación
+        }
+    }//GEN-LAST:event_btnSalirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -78,5 +210,12 @@ public class FrmPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCitasMedicas;
+    private javax.swing.JButton btnDoctores;
+    private javax.swing.JButton btnPacientes;
+    private javax.swing.JButton btnSalir;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel5;
     // End of variables declaration//GEN-END:variables
 }

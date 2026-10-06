@@ -14,7 +14,7 @@ import Conexion.ConexionDB;
 //import Vista.FrmCitas;
 //import Vista.FrmDoctores;
 //import Vista.FrmPacientes;
-//import Vista.FrmPrincipal;
+import Vista.FrmPrincipal;
 
 import java.sql.Connection;
 
@@ -35,6 +35,9 @@ public class SistemaCitasMedicas {
         } else {
             System.out.println("No se pudo realizar la conexion");
         }
+        
+        FrmPrincipal Principal = new FrmPrincipal();
+        Principal.setVisible(true);
     }
     
 }
