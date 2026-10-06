@@ -59,15 +59,15 @@ public class FrmCitas extends javax.swing.JFrame {
     }
 
     public void cargarCitasEnTabla() {
-        // 1. Obtener el modelo de la tabla y limpiar las filas anteriores
+        // Obtener el modelo de la tabla y limpiar las filas anteriores
         DefaultTableModel modelo = (DefaultTableModel) tableConsultaCitas.getModel();
         modelo.setRowCount(0); 
 
         try {
-            // 2. Consultar la lista de citas desde la base de datos usando CitaJDBC
+            // Consultar la lista de citas desde la base de datos usando CitaJDBC
             List<CitaMedica> lista = citaDAO.listarCitas();
 
-            // 3. Recorrer la lista e insertar cada cita como una fila en la JTable
+            // Recorrer la lista e insertar cada cita como una fila en la JTable
             for (CitaMedica c : lista) {
                 Object[] fila = new Object[]{
                     c.getCodigoCita(),
@@ -149,7 +149,6 @@ public class FrmCitas extends javax.swing.JFrame {
     }
     
     private void limpiarFormularioEliminar() {
-        // Si tienes un campo para buscar por código de cita:
         if (txtConsultarCitas != null) {
             txtConsultarCitas.setText("");
         }
@@ -180,7 +179,7 @@ public class FrmCitas extends javax.swing.JFrame {
         modelo.addColumn("Estado");
 
         try {
-            List<CitaMedica> lista = citaDAO.listarCitas(); // Método que devuelve List<CitaMedica>
+            List<CitaMedica> lista = citaDAO.listarCitas(); 
             for (CitaMedica c : lista) {
                 Object[] fila = new Object[]{
                     c.getCodigoCita(),
@@ -193,15 +192,15 @@ public class FrmCitas extends javax.swing.JFrame {
                 };
                 modelo.addRow(fila);
             }
-            tblCitasEstado.setModel(modelo); // Asigna el modelo a tu Tabla de la pestaña Cambiar Estado
+            tblCitasEstado.setModel(modelo); 
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(this, "Error al cargar citas en la tabla: " + e.getMessage(), "Error SQL", JOptionPane.ERROR_MESSAGE);
         }
     }
     
     private void refrescarTodasLasTablas() {
-        cargarCitasEnTabla();       // Tabla de Consultar / Principal
-        cargarCitasEnTablaEstado(); // Tabla de Cambiar Estado
+        cargarCitasEnTabla();       
+        cargarCitasEnTablaEstado(); 
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -832,8 +831,18 @@ public class FrmCitas extends javax.swing.JFrame {
         jButton1.setText("Regresar al Menú Principal");
         jButton1.setMaximumSize(new java.awt.Dimension(115, 23));
         jButton1.setMinimumSize(new java.awt.Dimension(115, 23));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton3.setLabel("Salir del Sistema");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -865,8 +874,6 @@ public class FrmCitas extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jButton3.getAccessibleContext().setAccessibleName("Salir del Sistema");
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -893,9 +900,6 @@ public class FrmCitas extends javax.swing.JFrame {
                 // Seleccionar en ComboBoxes
                 cbEstadoNuevo.setSelectedItem(cita.getEstadoCita());
                 seleccionarHoraEnComboBox(cbEstadoHora, cita.getHoraCita());
-
-                // Seleccionar la fila correspondiente en la tabla
-                //seleccionarFilaEnTablaPorId(tblCitasEstado, codigoCita);
 
             } else {
                 JOptionPane.showMessageDialog(this, "No existe ninguna cita con el código: " + codigoCita, "Sin Resultados", JOptionPane.INFORMATION_MESSAGE);
@@ -933,7 +937,7 @@ public class FrmCitas extends javax.swing.JFrame {
         // TODO add your handling code here:
         String txtCodigo = txtEstadoCodigoCita.getText().trim();
 
-        // 1. Validar que se haya seleccionado o buscado una cita
+        // Validar que se haya seleccionado o buscado una cita
         if (txtCodigo.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Seleccione una cita de la tabla o busque una por su código.", "Aviso", JOptionPane.WARNING_MESSAGE);
             return;
@@ -943,13 +947,13 @@ public class FrmCitas extends javax.swing.JFrame {
             int codigoCita = Integer.parseInt(txtCodigo);
             String nuevoEstado = cbEstadoNuevo.getSelectedItem().toString();
 
-            // 2. Ejecutar la actualización en la base de datos
+            // Ejecutar la actualización en la base de datos
             citaDAO.cambiarEstado(codigoCita, nuevoEstado);
 
-            // 3. Confirmación al usuario
+            // Confirmación al usuario
             JOptionPane.showMessageDialog(this, "El estado de la cita #" + codigoCita + " se actualizó correctamente a '" + nuevoEstado + "'.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
 
-            // 4. Refrescar la tabla y limpiar las cajas
+            // Refrescar la tabla y limpiar las cajas
             refrescarTodasLasTablas();
             limpiarCamposEstado();
 
@@ -1092,7 +1096,7 @@ public class FrmCitas extends javax.swing.JFrame {
             int idDoctor = Integer.parseInt(txtModCodigoDoctor.getText().trim());
             String motivo = txtModMotivo.getText().trim();
 
-            // 1. Formatear Fecha
+            // Formatear Fecha
             String fechaInput = txtModFecha.getText().trim();
             String fechaSQL = "";
             if (fechaInput.matches("\\d{4}-\\d{2}-\\d{2}")) {
@@ -1106,7 +1110,7 @@ public class FrmCitas extends javax.swing.JFrame {
                 return;
             }
 
-            // 2. Formatear Hora (12h AM/PM a 24h)
+            // Formatear Hora (12h AM/PM a 24h)
             String horaInput = cbModHora.getSelectedItem() != null ? cbModHora.getSelectedItem().toString().trim() : "08:00 AM";
             String horaSQL = "08:00:00";
             if (horaInput.toUpperCase().contains("AM") || horaInput.toUpperCase().contains("PM")) {
@@ -1117,10 +1121,10 @@ public class FrmCitas extends javax.swing.JFrame {
                 horaSQL = horaInput.length() == 5 ? horaInput + ":00" : horaInput;
             }
 
-            // 3. Obtener Estado
+            // Obtener Estado
             String estado = cbModEstado.getSelectedItem() != null ? cbModEstado.getSelectedItem().toString() : "Programada";
 
-            // 4. Instanciar y ejecutar el método actualizarCita del DAO
+            // Instanciar y ejecutar el método actualizarCita
             CitaMedica citaModificada = new CitaMedica(idCita, idPaciente, idDoctor, fechaSQL, horaSQL, motivo, estado);
 
             citaDAO.actualizarCita(citaModificada);
@@ -1134,7 +1138,7 @@ public class FrmCitas extends javax.swing.JFrame {
         } catch (java.text.ParseException e) {
             JOptionPane.showMessageDialog(this, "Error al procesar el formato de la fecha o la hora.", "Error", JOptionPane.ERROR_MESSAGE);
         } catch (SQLException e) {
-            // Muestra el mensaje enviado por tu DAO (ej: "Solo se pueden modificar citas 'Programada'.")
+            // Muestra el mensaje enviado (ej: "Solo se pueden modificar citas 'Programada'.")
             JOptionPane.showMessageDialog(this, e.getMessage(), "Atención", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_btnModificarCitasActionPerformed
@@ -1157,7 +1161,7 @@ public class FrmCitas extends javax.swing.JFrame {
             int idDoctor = Integer.parseInt(txtCodDoctor.getText().trim());
             String motivo = txtMotivoCitas.getText().trim();
 
-            // Procesar Fecha (Soporta 12/10/2026, 12-10-2026 y 2026-10-12)
+            // Procesar Fecha (12/10/2026, 12-10-2026 y 2026-10-12)
             String fechaInput = txtFechaCitas.getText().trim();
             String fechaSQL = "";
 
@@ -1235,8 +1239,7 @@ public class FrmCitas extends javax.swing.JFrame {
                     JOptionPane.WARNING_MESSAGE);
                 return;
             }
-
-            // 5. Guardar en MySQL
+            
             CitaMedica nuevaCita = new CitaMedica(idPaciente, idDoctor, fechaSQL, horaSQL, motivo, estado);
             citaDAO.insertarCita(nuevaCita);
 
@@ -1267,7 +1270,7 @@ public class FrmCitas extends javax.swing.JFrame {
         // TODO add your handling code here:
         String txtCodigo = txtConsultarCitas.getText().trim();
 
-        // 1. Validar que la caja de texto no esté vacía
+        // Validar que la caja de texto no esté vacía
         if (txtCodigo.isEmpty()) {
             JOptionPane.showMessageDialog(
                 this,
@@ -1283,7 +1286,7 @@ public class FrmCitas extends javax.swing.JFrame {
             CitaMedica cita = citaDAO.buscarCita(codigoCita);
 
             if (cita != null) {
-                // 2. Cita encontrada: Limpiar la tabla y cargar los datos
+                // Cita encontrada
                 modeloTabla.setRowCount(0);
 
                 Object[] fila = new Object[]{
@@ -1305,7 +1308,7 @@ public class FrmCitas extends javax.swing.JFrame {
                 );
 
             } else {
-                // 3. Cita NO encontrada: Limpiar la tabla y lanzar aviso
+                // Cita NO encontrada
                 modeloTabla.setRowCount(0);
                 JOptionPane.showMessageDialog(
                     this,
@@ -1341,6 +1344,32 @@ public class FrmCitas extends javax.swing.JFrame {
     private void txtConsultarCitasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtConsultarCitasActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtConsultarCitasActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        int confirmacion = JOptionPane.showConfirmDialog(
+        this, 
+        "¿Está seguro de que desea salir del sistema?", 
+        "Confirmar salida", 
+        JOptionPane.YES_NO_OPTION,
+        JOptionPane.QUESTION_MESSAGE
+        );
+
+        if (confirmacion == JOptionPane.YES_OPTION) {
+            System.exit(0);
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        // Instanciar la ventana principal
+        FrmPrincipal menuPrincipal = new FrmPrincipal();
+        menuPrincipal.setVisible(true);
+        menuPrincipal.setLocationRelativeTo(null); // Centrar en pantalla
+
+        // Cerrar la ventana actual de citas
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
     
     private void seleccionarHoraEnComboBox(javax.swing.JComboBox<String> combo, String horaTabla) {
         if (horaTabla == null || horaTabla.trim().isEmpty()) {
@@ -1348,17 +1377,15 @@ public class FrmCitas extends javax.swing.JFrame {
         }
 
         try {
-            // Limpiar la cadena si trae segundos (ejemplo "08:00:00" -> "08:00")
+            // Limpiar la cadena si trae segundos ("08:00:00" -> "08:00")
             String horaLimpia = horaTabla.length() > 5 ? horaTabla.substring(0, 5) : horaTabla;
 
-            // Intentar parsear de 24h a 12h
             java.text.SimpleDateFormat parser24 = new java.text.SimpleDateFormat("HH:mm");
             java.text.SimpleDateFormat format12 = new java.text.SimpleDateFormat("hh:mm a", java.util.Locale.US);
 
             java.util.Date date = parser24.parse(horaLimpia);
             String hora12h = format12.format(date).toUpperCase();
 
-            // Buscar la hora formateada en las opciones del ComboBox
             boolean encontrado = false;
             for (int i = 0; i < combo.getItemCount(); i++) {
                 String item = combo.getItemAt(i).toString().trim();
@@ -1374,7 +1401,6 @@ public class FrmCitas extends javax.swing.JFrame {
             }
 
         } catch (java.text.ParseException e) {
-            // Si la hora de la tabla ya venía en formato 12h (ej: "08:00 AM")
             combo.setSelectedItem(horaTabla.trim());
         }
     }

@@ -48,7 +48,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Sistema de Citas Médicas");
 
         btnCitasMedicas.setText("Citas Médicas");
@@ -91,12 +92,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(80, 80, 80)
-                .addComponent(jLabel1)
-                .addContainerGap(85, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(130, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -110,6 +107,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addGap(189, 189, 189))))
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -135,7 +133,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private void btnPacientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPacientesActionPerformed
         // TODO add your handling code here:
         FrmPacientes frmPacientes = new FrmPacientes();
-        frmPacientes.setLocationRelativeTo(this); // Para que abra centrado respecto a la ventana principal
+        frmPacientes.setLocationRelativeTo(this); 
         frmPacientes.setVisible(true);
         
         this.dispose();
@@ -144,7 +142,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private void btnCitasMedicasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCitasMedicasActionPerformed
         // TODO add your handling code here:
         FrmCitas frmCitas = new FrmCitas();
-        frmCitas.setLocationRelativeTo(this); // Para que abra centrado respecto a la ventana principal
+        frmCitas.setLocationRelativeTo(this); 
         frmCitas.setVisible(true);
         
         this.dispose();
@@ -153,7 +151,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private void btnDoctoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDoctoresActionPerformed
         // TODO add your handling code here:
         FrmDoctores frmDoctores = new FrmDoctores();
-        frmDoctores.setLocationRelativeTo(this); // Para que abra centrado respecto a la ventana principal
+        frmDoctores.setLocationRelativeTo(this);
         frmDoctores.setVisible(true);
         
         this.dispose();
@@ -170,7 +168,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         );
 
         if (confirmacion == JOptionPane.YES_OPTION) {
-            System.exit(0); // Cierra completamente la aplicación
+            System.exit(0);
         }
     }//GEN-LAST:event_btnSalirActionPerformed
 

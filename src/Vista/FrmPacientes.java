@@ -33,20 +33,19 @@ public class FrmPacientes extends javax.swing.JFrame {
         DefaultTableModel modelo = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int row, int column) {
-                return false; // Desactiva la edición directa en la tabla
+                return false; 
             }
         };
 
-        modelo.addColumn("Código");        // Columna 0
-        modelo.addColumn("Nombre");        // Columna 1
-        modelo.addColumn("Edad");          // Columna 2
-        modelo.addColumn("Teléfono");      // Columna 3
-        modelo.addColumn("Correo");        // Columna 4
-        modelo.addColumn("Tipo Paciente"); // Columna 5
-        modelo.addColumn("Estado");        // Columna 6
+        modelo.addColumn("Código");        
+        modelo.addColumn("Nombre");        
+        modelo.addColumn("Edad");          
+        modelo.addColumn("Teléfono");      
+        modelo.addColumn("Correo");        
+        modelo.addColumn("Tipo Paciente"); 
+        modelo.addColumn("Estado");        
 
         try {
-            // 2. Iterar sobre los datos traídos por PacienteJDBC
             for (Paciente paciente : pacienteJDBC.listarPacientes()) {
                 modelo.addRow(new Object[]{
                     paciente.getCodigoPaciente(),
@@ -59,7 +58,6 @@ public class FrmPacientes extends javax.swing.JFrame {
                 });
             }
 
-            // 3. Aplicar el modelo recién construido a la JTable
             tblPacientes.setModel(modelo);
 
         } catch (SQLException e) {
@@ -236,12 +234,13 @@ public class FrmPacientes extends javax.swing.JFrame {
                     .addComponent(cmbTipoPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtEdad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel11)
-                        .addComponent(cmbEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(cmbEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel8)
+                        .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
