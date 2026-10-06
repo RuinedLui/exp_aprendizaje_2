@@ -4,12 +4,6 @@
  */
 package Vista;
 
-/*import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-*/
-
 import Modelo.CitaMedica;
 import Modelo.CitaMedica.CitaJDBC;
 import javax.swing.table.DefaultTableModel;
@@ -294,6 +288,8 @@ public class FrmCitas extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         tblCitasEstado = new javax.swing.JTable();
         btnBuscarEstado = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -351,16 +347,16 @@ public class FrmCitas extends javax.swing.JFrame {
             .addGroup(tabConsultarLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(tabConsultarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 679, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1)
                     .addGroup(tabConsultarLayout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtConsultarCitas)
+                        .addComponent(txtConsultarCitas, javax.swing.GroupLayout.DEFAULT_SIZE, 412, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnConsultarCitas)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnMostrarCitas)))
-                .addContainerGap())
+                        .addGap(18, 18, 18)
+                        .addComponent(btnMostrarCitas)
+                        .addContainerGap())))
         );
         tabConsultarLayout.setVerticalGroup(
             tabConsultarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -372,7 +368,7 @@ public class FrmCitas extends javax.swing.JFrame {
                     .addComponent(btnConsultarCitas)
                     .addComponent(btnMostrarCitas))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 384, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -464,7 +460,7 @@ public class FrmCitas extends javax.swing.JFrame {
                     .addComponent(txtMotivoCitas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(66, 66, 66)
                 .addComponent(btnRegistrarCitas)
-                .addContainerGap(138, Short.MAX_VALUE))
+                .addContainerGap(74, Short.MAX_VALUE))
         );
 
         tabCitasMedicas.addTab("Registrar", tabRegistrar);
@@ -579,7 +575,7 @@ public class FrmCitas extends javax.swing.JFrame {
                     .addComponent(txtModMotivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(btnModificarCitas)
-                .addContainerGap(211, Short.MAX_VALUE))
+                .addContainerGap(147, Short.MAX_VALUE))
         );
 
         tabCitasMedicas.addTab("Modificar", tabModificar);
@@ -694,7 +690,7 @@ public class FrmCitas extends javax.swing.JFrame {
                     .addComponent(txtElimMotivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(btnEliminarCitas)
-                .addContainerGap(211, Short.MAX_VALUE))
+                .addContainerGap(147, Short.MAX_VALUE))
         );
 
         tabCitasMedicas.addTab("Eliminar", tabEliminar);
@@ -754,10 +750,6 @@ public class FrmCitas extends javax.swing.JFrame {
         tabConsultarDoctoresLayout.setHorizontalGroup(
             tabConsultarDoctoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(tabConsultarDoctoresLayout.createSequentialGroup()
-                .addGap(290, 290, 290)
-                .addComponent(btnGuardarEstado)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(tabConsultarDoctoresLayout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addGroup(tabConsultarDoctoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(tabConsultarDoctoresLayout.createSequentialGroup()
@@ -780,9 +772,8 @@ public class FrmCitas extends javax.swing.JFrame {
                                 .addGap(40, 40, 40)
                                 .addComponent(jLabel29)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(cbEstadoHora, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cbEstadoHora, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(tabConsultarDoctoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tabConsultarDoctoresLayout.createSequentialGroup()
                                 .addComponent(txtEstadoCodigoPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -800,6 +791,10 @@ public class FrmCitas extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtEstadoMotivo, javax.swing.GroupLayout.PREFERRED_SIZE, 593, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
+            .addGroup(tabConsultarDoctoresLayout.createSequentialGroup()
+                .addGap(307, 307, 307)
+                .addComponent(btnGuardarEstado)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         tabConsultarDoctoresLayout.setVerticalGroup(
             tabConsultarDoctoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -826,23 +821,34 @@ public class FrmCitas extends javax.swing.JFrame {
                     .addComponent(jLabel32)
                     .addComponent(txtEstadoMotivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnGuardarEstado)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         tabCitasMedicas.addTab("Cambiar Estado", tabConsultarDoctores);
 
+        jButton1.setText("Regresar al Menú Principal");
+        jButton1.setMaximumSize(new java.awt.Dimension(115, 23));
+        jButton1.setMinimumSize(new java.awt.Dimension(115, 23));
+
+        jButton3.setLabel("Salir del Sistema");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(tabCitasMedicas))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(tabCitasMedicas, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -851,9 +857,15 @@ public class FrmCitas extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tabCitasMedicas, javax.swing.GroupLayout.PREFERRED_SIZE, 460, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addComponent(tabCitasMedicas, javax.swing.GroupLayout.PREFERRED_SIZE, 396, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton3)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        jButton3.getAccessibleContext().setAccessibleName("Salir del Sistema");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -1419,6 +1431,8 @@ public class FrmCitas extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbHoraCitas;
     private javax.swing.JComboBox<String> cbModEstado;
     private javax.swing.JComboBox<String> cbModHora;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

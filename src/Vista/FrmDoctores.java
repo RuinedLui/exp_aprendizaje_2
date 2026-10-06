@@ -4,19 +4,79 @@
  */
 package Vista;
 
+import Modelo.Doctor;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
- * @author luise
+ * @author Lenovo
  */
 public class FrmDoctores extends javax.swing.JFrame {
-
+    
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FrmDoctores.class.getName());
+    
+    private Doctor.DoctorJDBC doctorJDBC;
+    private int codigoDoctorSeleccionado = 0;
     /**
      * Creates new form FrmDoctores
      */
     public FrmDoctores() {
         initComponents();
-    }
+        setLocationRelativeTo(null);
 
+        doctorJDBC = new Doctor.DoctorJDBC();
+
+        try {
+            javax.swing.text.MaskFormatter mascara =
+                    new javax.swing.text.MaskFormatter("####-####");
+
+            mascara.setPlaceholderCharacter('_');
+            mascara.install(txtTelefonoDoctor);
+
+        } catch (java.text.ParseException e) {
+            System.out.println("Error en la máscara del teléfono");
+        }
+
+        cargarDoctores();
+    }
+    
+    private void cargarDoctores() {
+
+        DefaultTableModel modelo = new DefaultTableModel();
+
+        modelo.addColumn("Código");
+        modelo.addColumn("Nombre");
+        modelo.addColumn("Especialidad");
+        modelo.addColumn("Teléfono");
+        modelo.addColumn("Correo");
+        modelo.addColumn("Estado");
+
+        try {
+
+            for (Doctor doctor : doctorJDBC.listarDoctores()) {
+
+                modelo.addRow(new Object[]{
+                    doctor.getCodigoDoctor(),
+                    doctor.getNombreCompleto(),
+                    doctor.getEspecialidad(),
+                    doctor.getTelefono(),
+                    doctor.getCorreo(),
+                    doctor.getEstado()
+                });
+            }
+
+            tblDoctores.setModel(modelo);
+
+        } catch (SQLException e) {
+
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Error al cargar doctores: " + e.getMessage()
+            );
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -26,70 +86,77 @@ public class FrmDoctores extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        txtNombreDoctor = new javax.swing.JTextField();
+        cmbEspecialidad = new javax.swing.JComboBox<>();
+        txtCorreoDoctor = new javax.swing.JTextField();
+        cmbEstado = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
-        jPanel4 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tblDoctores = new javax.swing.JTable();
+        btnGuardar = new javax.swing.JButton();
+        btnActualizar = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
+        btnLimpiar = new javax.swing.JButton();
+        btnVolverMenu = new javax.swing.JButton();
+        txtTelefonoDoctor = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel6.setText("Nombre:");
+
+        jLabel7.setText("Especialidad:");
+
+        jLabel8.setText("Telefono:");
+
+        jLabel9.setText("Correo:");
+
+        jLabel10.setText("Estado:");
+
+        cmbEspecialidad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Medicina General", "Psicología", "Nutrición", "Fisioterapia" }));
+
+        cmbEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Activo", "Inactivo" }));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Módulo: Doctores");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 563, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 264, Short.MAX_VALUE)
-        );
+        tblDoctores.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        tblDoctores.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblDoctoresMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(tblDoctores);
 
-        jTabbedPane1.addTab("tab1", jPanel1);
+        btnGuardar.setText("Guardar");
+        btnGuardar.addActionListener(this::btnGuardarActionPerformed);
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 563, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 264, Short.MAX_VALUE)
-        );
+        btnActualizar.setText("Modificar");
+        btnActualizar.addActionListener(this::btnActualizarActionPerformed);
 
-        jTabbedPane1.addTab("tab2", jPanel2);
+        btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(this::btnEliminarActionPerformed);
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 563, Short.MAX_VALUE)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 264, Short.MAX_VALUE)
-        );
+        btnLimpiar.setText("Limpiar");
+        btnLimpiar.addActionListener(this::btnLimpiarActionPerformed);
 
-        jTabbedPane1.addTab("tab3", jPanel3);
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 563, Short.MAX_VALUE)
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 264, Short.MAX_VALUE)
-        );
-
-        jTabbedPane1.addTab("tab4", jPanel4);
+        btnVolverMenu.setText("Volver al Menú");
+        btnVolverMenu.addActionListener(this::btnVolverMenuActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -98,21 +165,259 @@ public class FrmDoctores extends javax.swing.JFrame {
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel9))
+                        .addGap(29, 29, 29)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtCorreoDoctor)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(cmbEspecialidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(115, 115, 115)
+                                .addComponent(jLabel10)
+                                .addGap(29, 29, 29)
+                                .addComponent(cmbEstado, 0, 158, Short.MAX_VALUE))
+                            .addComponent(txtNombreDoctor)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(txtTelefonoDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnGuardar)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnActualizar)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnEliminar)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnLimpiar)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnVolverMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(txtNombreDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(cmbEspecialidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel10)
+                    .addComponent(cmbEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(txtTelefonoDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(txtCorreoDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTabbedPane1)
-                .addContainerGap())
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnGuardar)
+                    .addComponent(btnActualizar)
+                    .addComponent(btnEliminar)
+                    .addComponent(btnLimpiar)
+                    .addComponent(btnVolverMenu))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnVolverMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverMenuActionPerformed
+        // TODO add your handling code here:
+        // Instanciar la ventana principal
+        FrmPrincipal menuPrincipal = new FrmPrincipal();
+        menuPrincipal.setVisible(true);
+        menuPrincipal.setLocationRelativeTo(null); // Centrar en pantalla
+
+        // Cerrar la ventana actual de citas
+        this.dispose();
+    }//GEN-LAST:event_btnVolverMenuActionPerformed
+
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        // TODO add your handling code here:
+                if (txtNombreDoctor.getText().trim().isEmpty()
+                || txtCorreoDoctor.getText().trim().isEmpty()
+                || txtTelefonoDoctor.getText().contains("_")) {
+
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Complete todos los campos"
+            );
+            return;
+        }
+
+        try {
+            Doctor doctor = new Doctor(
+                    0,
+                    txtNombreDoctor.getText(),
+                    cmbEspecialidad.getSelectedItem().toString(),
+                    txtTelefonoDoctor.getText(),
+                    txtCorreoDoctor.getText(),
+                    cmbEstado.getSelectedItem().toString()
+            );
+
+            doctorJDBC.insertarDoctor(doctor);
+
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Doctor registrado correctamente"
+            );
+
+            limpiarCampos();
+            cargarDoctores();
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Error al registrar doctor: " + e.getMessage()
+            );
+        }
+    }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
+        // TODO add your handling code here:.
+                if (codigoDoctorSeleccionado == 0) {
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Seleccione un doctor de la tabla"
+            );
+            return;
+        }
+
+        try {
+            doctorJDBC.actualizarEstado(
+                    codigoDoctorSeleccionado,
+                    cmbEstado.getSelectedItem().toString()
+            );
+
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Estado actualizado correctamente"
+            );
+
+            limpiarCampos();
+            cargarDoctores();
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Error al actualizar doctor: " + e.getMessage()
+            );
+        }
+    }//GEN-LAST:event_btnActualizarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        // TODO add your handling code here:
+        if (codigoDoctorSeleccionado == 0) {
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Seleccione un doctor de la tabla"
+            );
+            return;
+        }
+
+        try {
+            doctorJDBC.eliminarDoctor(codigoDoctorSeleccionado);
+
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Doctor eliminado correctamente"
+            );
+
+            limpiarCampos();
+            cargarDoctores();
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Error al eliminar doctor: " + e.getMessage()
+            );
+        }
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        // TODO add your handling code here:
+        limpiarCampos();
+    }//GEN-LAST:event_btnLimpiarActionPerformed
+
+    private void tblDoctoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDoctoresMouseClicked
+        // TODO add your handling code here:
+        int fila = tblDoctores.getSelectedRow();
+
+        if (fila != -1) {
+            codigoDoctorSeleccionado = Integer.parseInt(
+                    tblDoctores.getValueAt(fila, 0).toString()
+            );
+
+            txtNombreDoctor.setText(
+                    tblDoctores.getValueAt(fila, 1).toString()
+            );
+
+            cmbEspecialidad.setSelectedItem(
+                    tblDoctores.getValueAt(fila, 2).toString()
+            );
+
+            txtTelefonoDoctor.setText(
+                    tblDoctores.getValueAt(fila, 3).toString()
+            );
+
+            txtCorreoDoctor.setText(
+                    tblDoctores.getValueAt(fila, 4).toString()
+            );
+
+            cmbEstado.setSelectedItem(
+                    tblDoctores.getValueAt(fila, 5).toString()
+            );
+        }
+    }//GEN-LAST:event_tblDoctoresMouseClicked
+    private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+
+    }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void btnBorrarCamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+
+    }//GEN-LAST:event_btnLimpiarActionPerformed
+
+    private void tblMostrarDoctoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDoctoresMouseClicked
+
+    }//GEN-LAST:event_tblDoctoresMouseClicked
+
+    private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
+
+    }//GEN-LAST:event_btnActualizarActionPerformed
+
+    private void limpiarCampos() {
+        codigoDoctorSeleccionado = 0;
+
+        txtNombreDoctor.setText("");
+
+        txtTelefonoDoctor.setValue(null);
+        txtTelefonoDoctor.setText("");
+
+        txtCorreoDoctor.setText("");
+
+        cmbEspecialidad.setSelectedIndex(0);
+        cmbEstado.setSelectedIndex(0);
+
+        tblDoctores.clearSelection();
+    }
     /**
      * @param args the command line arguments
      */
@@ -129,31 +434,42 @@ public class FrmDoctores extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmDoctores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmDoctores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmDoctores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmDoctores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
+            logger.log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FrmDoctores().setVisible(true);
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
             }
-        });
+        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
+            logger.log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(() -> new FrmDoctores().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnActualizar;
+    private javax.swing.JButton btnEliminar;
+    private javax.swing.JButton btnGuardar;
+    private javax.swing.JButton btnLimpiar;
+    private javax.swing.JButton btnVolverMenu;
+    private javax.swing.JComboBox<String> cmbEspecialidad;
+    private javax.swing.JComboBox<String> cmbEstado;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable tblDoctores;
+    private javax.swing.JTextField txtCorreoDoctor;
+    private javax.swing.JTextField txtNombreDoctor;
+    private javax.swing.JFormattedTextField txtTelefonoDoctor;
     // End of variables declaration//GEN-END:variables
 }
